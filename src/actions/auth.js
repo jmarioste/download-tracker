@@ -1,4 +1,4 @@
-import { firebase, googleAuthProvider, githubAuthProvider } from "../firebase/firebase";
+import database, { firebase, googleAuthProvider, githubAuthProvider } from "../firebase/firebase";
 import AuthProvider from './provider.enum';
 export const login = (uid) => ({
   type: 'LOGIN',
@@ -27,7 +27,17 @@ export const startLogin = (authProvider) => {
         break;
     }
 
-    return firebase.auth().signInWithPopup(provider);
+    return firebase.auth().signInWithPopup(provider).then((response) => {
+      console.log(JSON.stringify(response, null, 4));
+      const { user, credential, additionalUserInfo } = response;
+      // console.log(response)
+      database.ref(`/users/${user.uid}`).set({
+        displayName: user.displayName,
+        photoURL: user.providerData[0].photoURL,
+        accessToken: credential.accessToken,
+        username: additionalUserInfo.username
+      })
+    });
   }
 }
 
