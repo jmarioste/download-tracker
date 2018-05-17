@@ -1,8 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { startLogin } from "../actions/auth";
-
+import AuthProvider from "../actions/provider.enum";
 export class LoginPage extends Component {
+
+  loginWithGoogle = () => {
+    this.props.startLogin(AuthProvider.GOOGLE);
+  }
+
+  loginWithGithub = () => {
+    this.props.startLogin(AuthProvider.GITHUB);
+  }
+
   render() {
     return (
       <div className="box-layout">
@@ -11,8 +20,8 @@ export class LoginPage extends Component {
           <p>Tagline for app </p>
           <button
             className="button"
-            onClick={this.props.startLogin}
-          >Login with Google</button>
+            onClick={this.loginWithGithub}
+          >Login with Github</button>
         </div>
       </div>
     )
@@ -20,8 +29,8 @@ export class LoginPage extends Component {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    startLogin: () => {
-      dispatch(startLogin())
+    startLogin: (authProvider) => {
+      dispatch(startLogin(authProvider))
     }
   }
 };

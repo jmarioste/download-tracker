@@ -38,14 +38,16 @@ ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    console.log('uid', user.uid);
+    console.log('uid', user);
     store.dispatch(login(user.uid));
-    store.dispatch(startSetExpenses()).then(() => {
-      renderApp();
-      if (history.location.pathname === '/') {
-        history.push('/dashboard');
-      }
-    });
+    // store.dispatch(startSetExpenses()).then(() => {
+
+    // });
+
+    renderApp();
+    if (history.location.pathname === '/') {
+      history.push('/dashboard');
+    }
   } else {
     renderApp();
     store.dispatch(logout());

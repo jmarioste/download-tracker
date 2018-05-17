@@ -1,5 +1,5 @@
-import { firebase, googleAuthProvider } from "../firebase/firebase";
-
+import { firebase, googleAuthProvider, githubAuthProvider } from "../firebase/firebase";
+import AuthProvider from './provider.enum';
 export const login = (uid) => ({
   type: 'LOGIN',
   uid
@@ -9,9 +9,25 @@ export const logout = () => ({
   'type': 'LOGOUT'
 })
 
-export const startLogin = () => {
+export const startLogin = (authProvider) => {
+
+
+
+
   return () => {
-    return firebase.auth().signInWithPopup(googleAuthProvider);
+    let provider = AuthProvider.GOOGLE;
+    switch (authProvider) {
+      case AuthProvider.GOOGLE:
+        provider = googleAuthProvider;
+        break;
+      case AuthProvider.GITHUB:
+        provider = githubAuthProvider;
+        break;
+      default:
+        break;
+    }
+
+    return firebase.auth().signInWithPopup(provider);
   }
 }
 
