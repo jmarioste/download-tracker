@@ -34,8 +34,8 @@ export class Header extends React.Component {
             <div>
               <Dropdown className="dropdown--link" onSelect={this.onSelect} id="user-dropdown">
                 <Dropdown.Toggle>
-                  <i className="fab fa-github fa-lg"></i>
-                  {user.username}
+                  <img src={user.photoURL} className="dropdown__profile-pic" />
+                  {user.displayName}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <MenuItem eventKey="logout">Logout</MenuItem>
