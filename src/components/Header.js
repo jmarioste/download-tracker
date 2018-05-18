@@ -1,20 +1,53 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { startLogout } from "../actions/auth";
 import { Link } from 'react-router-dom';
+import { DropdownButton, MenuItem, Dropdown } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
-export const Header = ({ startLogout }) => (
-  <header className="header">
-    <div className="content-container">
-      <div className="header__content">
-        <Link to="/dashboard" className="header__title">
-          <h1 >Github Download Tracker</h1>
-        </Link>
-        <button className="button button--link" onClick={startLogout}>Logout</button>
-      </div>
-    </div>
-  </header>
-);
+
+import { startLogout } from "../actions/auth";
+
+
+export class Header extends React.Component {
+
+  onSelect = (value) => {
+    switch (value) {
+      case "logout":
+        this.props.startLogout();
+        break;
+      default:
+        break;
+    }
+  }
+  render() {
+    const { startLogout, user } = this.props;
+    const options = [
+      "Logout"
+    ];
+
+    return (
+      <header className="header">
+        <div className="content-container">
+          <div className="header__content">
+            <Link to="/dashboard" className="header__title">
+              <h2 >Github Download Tracker</h2>
+            </Link>
+            <div>
+              <Dropdown className="dropdown--link" onSelect={this.onSelect} id="user-dropdown">
+                <Dropdown.Toggle>
+                  <i className="fab fa-github fa-lg"></i>
+                  {user.username}
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <MenuItem eventKey="logout">Logout</MenuItem>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
+          </div>
+        </div>
+      </header>
+    )
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -23,5 +56,10 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    user: state.auth
+  }
+}
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

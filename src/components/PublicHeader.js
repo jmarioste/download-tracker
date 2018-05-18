@@ -8,7 +8,7 @@ export const Header = (props) => (
   <header className="header">
     <div className="content-container">
       <div className="header__content">
-        <Link to="/dashboard" className="header__title">
+        <Link to="/" className="header__title">
           <h2 >Github Download Tracker</h2>
         </Link>
         <button className="button button--login" onClick={props.startLogin}>

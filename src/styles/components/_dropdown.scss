@@ -1,0 +1,36 @@
+// .Dropdown-root--link{
+//   .Dropdown-control{
+//     background-color: transparent;
+//     color: #fff;
+//     border:none;
+//   }
+//   .Dropdown-arrow {
+//     top:17px;
+//     border-color: #fff transparent transparent;
+//   }
+// }
+
+// .Dropdown-root--link.is-open {
+//   .Dropdown-arrow {
+//      top:17px;
+//       border-color: transparent transparent #fff;
+//   }
+// }
+
+.dropdown--link, .dropdown--link.open {
+  .dropdown-toggle.btn-default {
+    border: none;
+    box-shadow: none;
+    background:transparent;
+    color: #fff;
+    .fab {
+      margin-right:10px;
+    }
+    &:hover, &:focus, &:active{
+      border: none;
+      background:transparent;
+      color: #fff;
+    }
+  }
+}
+

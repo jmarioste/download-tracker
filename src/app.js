@@ -12,8 +12,9 @@ import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
 
-import { firebase } from './firebase/firebase';
+import database, { firebase } from './firebase/firebase';
 import LoadingPage from './components/LoadingPage';
+import { EAFNOSUPPORT } from 'constants';
 
 const store = configureStore();
 
@@ -38,17 +39,20 @@ ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    console.log('uid', user);
-    store.dispatch(login(user.uid));
+    console.log('logged in', user);
 
-    // store.dispatch(startSetExpenses()).then(() => {
+    database.ref(`users/${user.uid}`).once('value').then((snapshot) => {
+      var userData = snapshot.val();
+      userData.uid = user.uid;
+      store.dispatch(login(userData));
 
-    // });
+      renderApp();
+      if (history.location.pathname === '/') {
+        history.push('/dashboard');
+      }
+    });
 
-    renderApp();
-    if (history.location.pathname === '/') {
-      history.push('/dashboard');
-    }
+
   } else {
     renderApp();
     store.dispatch(logout());
