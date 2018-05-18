@@ -3,4 +3,7 @@ __snapshots__/
 public/dist/
 .env.development
 .env.test
+.firebaserc
+firebase.json
+database.rules.json
 *.log

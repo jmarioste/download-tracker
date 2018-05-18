@@ -1,0 +1,14 @@
+.feature-box{
+  display:flex;  
+  justify-content: space-between;
+}
+
+.feature-box__left-content{
+  flex-grow:1;
+  flex-basis:50%;
+}
+
+.feature-box__right-content{
+  flex-grow:1;
+  flex-basis:50%;
+}

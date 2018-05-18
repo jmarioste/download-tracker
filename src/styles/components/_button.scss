@@ -17,3 +17,21 @@
 .button--secondary {
   background: #888888;
 }
+
+.button--login {
+  background: #fff;  
+  color: #212121;
+  
+  box-shadow: 1px 2px 4px lighten(black, .5);
+  >.fab {
+    margin-right:.6rem;
+  }
+}
+
+.button--login--green {
+  @extend .button--login;
+  background: #449d44;  
+  color: #ffffff;
+  font-weight: 300;
+  padding: $m-size $l-size; 
+}

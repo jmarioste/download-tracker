@@ -11,9 +11,6 @@ export const logout = () => ({
 
 export const startLogin = (authProvider) => {
 
-
-
-
   return () => {
     let provider = AuthProvider.GOOGLE;
     switch (authProvider) {
