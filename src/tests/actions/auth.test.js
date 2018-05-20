@@ -1,12 +1,12 @@
 import { login, logout } from '../../actions/auth';
-
+import userData from '../fixtures/userData'
 
 test('should generate login action object', () => {
-  const uid = 'abc123';
-  const action = login(uid);
+
+  const action = login(userData);
   expect(action).toEqual({
     type: 'LOGIN',
-    uid
+    userData
   });
 
 });

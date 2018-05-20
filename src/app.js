@@ -15,6 +15,9 @@ import 'react-dates/lib/css/_datepicker.css';
 import database, { firebase } from './firebase/firebase';
 import LoadingPage from './components/LoadingPage';
 import { EAFNOSUPPORT } from 'constants';
+import { startSetAllRepos } from './actions/allRepos';
+import { startGetSelectedRepo } from './actions/selectRepo';
+import { startGetTrackedRepos } from './actions/trackedRepo';
 
 const store = configureStore();
 
@@ -46,10 +49,15 @@ firebase.auth().onAuthStateChanged((user) => {
       userData.uid = user.uid;
       store.dispatch(login(userData));
 
-      renderApp();
-      if (history.location.pathname === '/') {
-        history.push('/dashboard');
-      }
+      store.dispatch(startSetAllRepos())
+        .then(() => store.dispatch(startGetTrackedRepos()))
+        .then(() => store.dispatch(startGetSelectedRepo()))
+        .then(() => {
+          renderApp();
+          if (history.location.pathname === '/') {
+            history.push('/dashboard');
+          }
+        });
     });
 
 

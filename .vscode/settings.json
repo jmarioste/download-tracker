@@ -20,4 +20,5 @@
     },
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
+    "beautify.tabSize": 2
 }

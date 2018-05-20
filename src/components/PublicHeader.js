@@ -4,7 +4,7 @@ import { startLogin } from "../actions/auth";
 import AuthProvider from "../actions/provider.enum";
 import { Link } from 'react-router-dom';
 
-export const Header = (props) => (
+export const PublicHeader = (props) => (
   <header className="header">
     <div className="content-container">
       <div className="header__content">
@@ -29,4 +29,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(null, mapDispatchToProps)(PublicHeader);

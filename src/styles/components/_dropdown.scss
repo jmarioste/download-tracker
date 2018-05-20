@@ -1,70 +1,55 @@
-// .Dropdown-root--link{
-//   .Dropdown-control{
-//     background-color: transparent;
-//     color: #fff;
-//     border:none;
-//   }
-//   .Dropdown-arrow {
-//     top:17px;
-//     border-color: #fff transparent transparent;
-//   }
-// }
-
-// .Dropdown-root--link.is-open {
-//   .Dropdown-arrow {
-//      top:17px;
-//       border-color: transparent transparent #fff;
-//   }
-// }
-
-.dropdown--link, .dropdown--link.open {
+.dropdown--link,
+.dropdown--link.open {
   .dropdown-toggle.btn-default {
     border: none;
     box-shadow: none;
-    background:transparent;
+    background: transparent;
     color: #fff;
-    display:flex;
+    display: flex;
     align-items: center;
     .fab {
-      margin-right:1rem;
+      margin-right: 1rem;
     }
-    &:hover, &:focus, &:active{
+    &:hover,
+    &:focus,
+    &:active {
       border: none;
-      background:transparent;
+      background: transparent;
       color: #fff;
     }
   }
   .dropdown-menu {
-    left:inherit;
-    right:0;
+    left: inherit;
+    right: 0;
   }
 }
 
-
-
 .dropdown__profile-pic {
-  height:3.2rem;
-  width:3.2rem;
-  margin-right:1rem;  
+  height: 3.2rem;
+  width: 3.2rem;
+  margin-right: 1rem;
   border-radius: 50%;
 }
 
-
-.dropdown--repo, .dropdown--repo.open  {
+.dropdown--repo,
+.dropdown--repo.open {
   .dropdown-toggle.btn-default {
     color: #212121;
-    .caret{
-      margin-left:1rem;
+    padding-left: 0;
+    .caret {
+      margin-left: 1rem;
       border-top: 8px dashed;
       border-right: 8px solid transparent;
       border-left: 8px solid transparent;
     }
-    &:hover, &:focus, &:active{
+    &:hover,
+    &:focus,
+    &:active {
       color: #212121;
     }
   }
   .dropdown-menu {
-    left:0;
-    right:inherit;
+    left: 0;
+    right: inherit;
   }
 }

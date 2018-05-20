@@ -1,13 +1,13 @@
 import authReducer from '../../reducers/auth';
-
-test('should set uid for login', () => {
+import userData from "../fixtures/userData";
+test('should set userData for login', () => {
   const action = {
     type: 'LOGIN',
-    uid: 'abc123'
+    userData
   };
 
   const state = authReducer({}, action);
-  expect(state.uid).toBe(action.uid);
+  expect(state).toEqual(action.userData);
 });
 
 test('should clear uid for logout', () => {

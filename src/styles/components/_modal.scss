@@ -1,0 +1,28 @@
+.modal-open .modal {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  border-radius: 0;
+}
+
+.modal-header {
+  border: none;
+}
+
+.modal-header__header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.modal-header__title {
+  margin: 0;
+}
+
+.modal-header__subtitle {
+  margin: 0;
+  color: #757575;
+}
