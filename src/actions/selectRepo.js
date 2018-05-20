@@ -16,12 +16,12 @@ export const startSetSelectedRepo = (selected) => {
   }
 }
 
-export const startGetSelectedRepo = () => {
-  return (dispatch, getState) => {
-    const state = getState();
-    const uid = state.auth.uid;
-    return database.ref(`/users/${uid}/selectedRepo`).once('value').then((snapshot) => {
-      return dispatch(selectRepo(snapshot.val()));
-    });
-  }
-}
+// export const startGetSelectedRepo = () => {
+//   return (dispatch, getState) => {
+//     const state = getState();
+//     const uid = state.auth.uid;
+//     return database.ref(`/users/${uid}/selectedRepo`).once('value').then((snapshot) => {
+//       return dispatch(selectRepo(snapshot.val()));
+//     });
+//   }
+// }

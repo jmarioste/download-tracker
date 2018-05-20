@@ -4,7 +4,7 @@ import { Provider } from 'react-redux' //provide the store to all of the compone
 import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 
-
+import { map } from "lodash";
 
 import { login, logout } from './actions/auth';
 
@@ -16,8 +16,8 @@ import database, { firebase } from './firebase/firebase';
 import LoadingPage from './components/LoadingPage';
 import { EAFNOSUPPORT } from 'constants';
 import { startSetAllRepos } from './actions/allRepos';
-import { startGetSelectedRepo } from './actions/selectRepo';
-import { startGetTrackedRepos } from './actions/trackedRepo';
+import { startGetSelectedRepo, selectRepo } from './actions/selectRepo';
+import { startGetTrackedRepos, startSetTrackedRepos, setRepos } from './actions/trackedRepo';
 
 const store = configureStore();
 
@@ -42,22 +42,28 @@ ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    console.log('logged in', user);
+
 
     database.ref(`users/${user.uid}`).once('value').then((snapshot) => {
       var userData = snapshot.val();
+      console.log('userData', userData);
       userData.uid = user.uid;
       store.dispatch(login(userData));
 
+
       store.dispatch(startSetAllRepos())
-        .then(() => store.dispatch(startGetTrackedRepos()))
-        .then(() => store.dispatch(startGetSelectedRepo()))
         .then(() => {
+          let trackedReposArray = _.map(userData.trackedRepos, (repo, key) => key);
+          console.log(trackedReposArray)
+          store.dispatch(setRepos(trackedReposArray));
+          store.dispatch(selectRepo(userData.selectedRepo));
           renderApp();
           if (history.location.pathname === '/') {
             history.push('/dashboard');
           }
         });
+
+
     });
 
 

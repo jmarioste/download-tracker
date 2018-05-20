@@ -1,4 +1,6 @@
 import database from "../firebase/firebase";
+
+import { map } from "lodash";
 export const addRepo = (repoName) => {
   return {
     type: 'ADD_REPO',
@@ -15,17 +17,14 @@ export const setRepos = (repos) => {
 
 
 
-export const startSetTrackedRepos = (trackedReposArray, allRepos) => {
+export const startSetTrackedRepos = (trackedReposArray) => {
   return (dispatch, getState) => {
     const state = getState();
     const uid = state.auth.uid;
     const trackedRepos = {};
 
-    allRepos.forEach(repo => {
-      const isTracked = trackedReposArray.indexOf(repo) > -1;
-      if (isTracked) {
-        trackedRepos[repo] = isTracked;
-      }
+    trackedReposArray.forEach(repo => {
+      trackedRepos[repo] = isTracked;
     });
     console.log(trackedRepos);
     return database.ref(`/users/${uid}/trackedRepos`).set(trackedRepos).then((ref) => {
@@ -35,23 +34,17 @@ export const startSetTrackedRepos = (trackedReposArray, allRepos) => {
 }
 
 
-export const startGetTrackedRepos = () => {
-  console.loo
-  return (dispatch, getState) => {
-    const state = getState();
-    const uid = state.auth.uid;
-    return database.ref(`/users/${uid}/trackedRepos`).once('value').then((snapshot) => {
-      const obj = snapshot.val();
-      let trackedReposArray = [];
-      for (const key in obj) {
-        if (obj.hasOwnProperty(key)) {
-          trackedReposArray.push(key);
-        }
-      }
-      console.log(obj, trackedReposArray)
-      return dispatch(setRepos(trackedReposArray));
-    });
-  }
-}
+// export const startGetTrackedRepos = () => {
+//   console.loo
+//   return (dispatch, getState) => {
+//     const state = getState();
+//     const uid = state.auth.uid;
+//     return database.ref(`/users/${uid}/trackedRepos`).once('value').then((snapshot) => {
+//       const trackedRepos = snapshot.val();
+//       const trackedReposArray = _.map(trackedRepos, (repo, key) => key);
+//       return dispatch(setRepos(trackedReposArray));
+//     });
+//   }
+// }
 
 
