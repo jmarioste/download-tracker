@@ -24,7 +24,7 @@ export const startSetTrackedRepos = (trackedReposArray) => {
     const trackedRepos = {};
 
     trackedReposArray.forEach(repo => {
-      trackedRepos[repo] = isTracked;
+      trackedRepos[repo] = true;
     });
     console.log(trackedRepos);
     return database.ref(`/users/${uid}/trackedRepos`).set(trackedRepos).then((ref) => {
