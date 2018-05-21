@@ -20,7 +20,7 @@ export class LineGraph extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    graphData: graphDataSelector(state.graphData)
+    graphData: graphDataSelector(state.graphData, state.selectedRepo, state.filters)
   }
 }
 

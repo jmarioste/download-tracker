@@ -56,11 +56,13 @@ const mapDispatchToProps = (dispatch, props) => {
       return dispatch(startGetReleaseData(repo));
     }
   }
-}
+};
+
 const mapStateToProps = (state) => {
   const isSelectedInTracked = state.trackedRepos.indexOf(state.selectedRepo) > -1;
   return {
     selectedRepo: isSelectedInTracked ? state.selectedRepo : undefined
   }
-}
+};
+
 export default connect(mapStateToProps, mapDispatchToProps)(DataPageHeader);

@@ -1,0 +1,8 @@
+.tag-selector {
+  display:flex;
+  align-items: center;
+  .fa-tag {
+    color: $accent;
+    margin-right: .5rem;
+  }
+}

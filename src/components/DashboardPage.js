@@ -3,6 +3,9 @@ import React, { Component } from 'react'
 import DataPageHeader from './DataPageHeader';
 import AddRepoModal from "./AddRepoModal";
 import LineGraph from './LineGraph';
+import Filters from './Filters';
+
+
 const NoDataPageHeader = (props) => {
   return (
     <div className="content-container">
@@ -55,6 +58,7 @@ export class DashboardPage extends Component {
           }
         </div>
         <div className="content-container">
+          <Filters />
           <LineGraph />
         </div>
         <AddRepoModal show={this.state.show} toggle={this.toggle} />

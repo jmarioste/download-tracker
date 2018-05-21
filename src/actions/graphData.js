@@ -10,6 +10,7 @@ export const setGraphData = (data) => {
 export const startGetReleaseData = (repo) => {
   return (dispatch, getState) => {
     return new Promise((resolve) => {
+      console.log('graphData actions', dummyData);
       resolve(dummyData);
     }).then((data) => {
       dispatch(setGraphData(data));
