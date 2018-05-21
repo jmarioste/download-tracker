@@ -1,5 +1,5 @@
 import database from "../firebase/firebase";
-export const selectRepo = (repo) => {
+export const selectRepo = (repo = '') => {
   return {
     type: 'SELECT_REPO',
     selectedRepo: repo

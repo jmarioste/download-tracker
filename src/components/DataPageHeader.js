@@ -2,10 +2,12 @@ import React from 'react';
 import { connect } from "react-redux";
 import { startSetSelectedRepo } from '../actions/selectRepo';
 import { MenuItem, Dropdown } from 'react-bootstrap';
+import { startGetReleaseData } from '../actions/graphData';
 
 export class DataPageHeader extends React.Component {
   onSelect = (repo) => {
-    this.props.startSetSelectedRepo(repo);
+    this.props.startSetSelectedRepo(repo)
+      .then(() => this.props.startGetReleaseData());
   }
 
   render() {
@@ -49,6 +51,9 @@ const mapDispatchToProps = (dispatch, props) => {
     startSetSelectedRepo: (repo) => {
       console.log(repo);
       return dispatch(startSetSelectedRepo(repo));
+    },
+    startGetReleaseData: (repo) => {
+      return dispatch(startGetReleaseData(repo));
     }
   }
 }

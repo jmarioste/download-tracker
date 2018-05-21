@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react'
 import DataPageHeader from './DataPageHeader';
 import AddRepoModal from "./AddRepoModal";
-
+import LineGraph from './LineGraph';
 const NoDataPageHeader = (props) => {
   return (
     <div className="content-container">
@@ -53,6 +53,9 @@ export class DashboardPage extends Component {
             :
             <NoDataPageHeader showModal={this.toggle} />
           }
+        </div>
+        <div className="content-container">
+          <LineGraph />
         </div>
         <AddRepoModal show={this.state.show} toggle={this.toggle} />
       </div>

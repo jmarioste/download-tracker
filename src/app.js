@@ -18,6 +18,7 @@ import { EAFNOSUPPORT } from 'constants';
 import { startSetAllRepos } from './actions/allRepos';
 import { startGetSelectedRepo, selectRepo } from './actions/selectRepo';
 import { startGetTrackedRepos, startSetTrackedRepos, setRepos } from './actions/trackedRepo';
+import { startGetReleaseData } from './actions/graphData';
 
 const store = configureStore();
 
@@ -57,11 +58,15 @@ firebase.auth().onAuthStateChanged((user) => {
           console.log(trackedReposArray)
           store.dispatch(setRepos(trackedReposArray));
           store.dispatch(selectRepo(userData.selectedRepo));
+        }).then(() => {
+          return store.dispatch(startGetReleaseData(userData.selectedRepo));
+        })
+        .then(() => {
           renderApp();
           if (history.location.pathname === '/') {
             history.push('/dashboard');
           }
-        });
+        })
 
 
     });
