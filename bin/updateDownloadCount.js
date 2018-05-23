@@ -1,25 +1,38 @@
 #!/usr/bin/env node
-
-const firebase = require('firebase');
+var firebase = require("firebase-admin");
 const githubWrapper = require('../server/github-wrapper');
 const _ = require('lodash');
 const axios = require('axios');
 const moment = require('moment');
 //static port not gonna work in heroku. it provides an environment variable. use process.env.PORT variable
-// require('dotenv').config({ path: '.env.development' });
+require('dotenv').config({ path: '.env.development' });
 
 const date = moment().format("MM-DD-YYYY");
-const config = {
-  apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-  databaseURL: process.env.FIREBASE_DATABASE_URL,
-  projectId: process.env.FIREBASE_PROJECT_ID,
-  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
-};
+// const config = {
+//   apiKey: process.env.FIREBASE_API_KEY,
+//   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+//   databaseURL: process.env.FIREBASE_DATABASE_URL,
+//   projectId: process.env.FIREBASE_PROJECT_ID,
+//   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+//   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
+// };
 
 
-firebase.initializeApp(config);
+firebase.initializeApp({
+  credential: {
+    "type": "service_account",
+    "project_id": "github-download-tracker",
+    "private_key_id": process.env.PRIVATE_KEY_ID,
+    "private_key": process.env.PRIVATE_KEY,
+    "client_email": "firebase-adminsdk-dzqec@github-download-tracker.iam.gserviceaccount.com",
+    "client_id": process.env.CLIENT_ID,
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://accounts.google.com/o/oauth2/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-dzqec%40github-download-tracker.iam.gserviceaccount.com"
+  },
+  databaseURL: "https://github-download-tracker.firebaseio.com"
+});
 
 const database = firebase.database();
 
