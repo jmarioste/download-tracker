@@ -10,7 +10,7 @@ export const setAllRepos = (allRepos) => {
 export const startSetAllRepos = () => {
   return (dispatch, getState) => {
     const { username, accessToken } = getState().auth;
-    const url = `https://api.github.com/users/${username}/repos?token=${accessToken}`;
+    const url = `https://api.github.com/users/${username}/repos?access_token=${accessToken}`;
     return axios.get(url).then((response) => {
       var repos = response.data.map(({ name }) => name)
       dispatch(setAllRepos(repos));

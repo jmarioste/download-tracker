@@ -19,7 +19,7 @@ const graphDataSelector = (data, repoName, filters) => {
     return {};
   }
   const { startDate, endDate } = filters;
-  const assets = data.repos[repoName][filters.version].assets;
+  const assets = data[repoName][filters.version].assets;
   const graphData = {
     labels: createLabelsFromDates(startDate, endDate),
     datasets: []
@@ -32,7 +32,7 @@ const graphDataSelector = (data, repoName, filters) => {
     const green = random(0, 127) + 127;
 
     const dataSet = {
-      label: artifactName,
+      label: artifactName.replace(/u002E/g, '.'),
       backgroundColor: `rgba(${red},${blue},${green}, .2)`,
       borderColor: `rgba(${red},${blue},${green}, 1)`,
       pointRadius: 2,

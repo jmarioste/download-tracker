@@ -1,5 +1,5 @@
-import dummyData from './dummyData';
-
+// import dummyData from './dummyData';
+import database from '../firebase/firebase'
 export const setGraphData = (data) => {
   return {
     type: 'SET_GRAPH_DATA',
@@ -9,11 +9,10 @@ export const setGraphData = (data) => {
 
 export const startGetReleaseData = (repo) => {
   return (dispatch, getState) => {
-    return new Promise((resolve) => {
-      console.log('graphData actions', dummyData);
-      resolve(dummyData);
-    }).then((data) => {
-      dispatch(setGraphData(data));
+    const state = getState();
+    const uid = state.auth.uid;
+    return database.ref(`/users/${uid}/repos`).once('value').then((data) => {
+      dispatch(setGraphData(data.val()));
     })
   }
 }
