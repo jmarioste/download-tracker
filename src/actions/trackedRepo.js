@@ -34,17 +34,5 @@ export const startSetTrackedRepos = (trackedReposArray) => {
 }
 
 
-// export const startGetTrackedRepos = () => {
-//   console.loo
-//   return (dispatch, getState) => {
-//     const state = getState();
-//     const uid = state.auth.uid;
-//     return database.ref(`/users/${uid}/trackedRepos`).once('value').then((snapshot) => {
-//       const trackedRepos = snapshot.val();
-//       const trackedReposArray = _.map(trackedRepos, (repo, key) => key);
-//       return dispatch(setRepos(trackedReposArray));
-//     });
-//   }
-// }
 
 
