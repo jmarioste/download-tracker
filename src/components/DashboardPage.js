@@ -5,6 +5,8 @@ import AddRepoModal from "./AddRepoModal";
 import LineGraph from './LineGraph';
 import Filters from './Filters';
 import versionsSelector from '../selectors/versionsSelector';
+import summarySelector from '../selectors/summary';
+import graphDataSelector from '../selectors/graphData';
 
 
 const NoDataPageHeader = (props) => {
@@ -91,6 +93,7 @@ const mapStateToProps = (state) => {
     trackedRepos: state.trackedRepos,
     selectedRepo: state.selectedRepo,
     hasVersions: versionsSelector(state.graphData, state.selectedRepo).length > 0,
+
   }
 }
 

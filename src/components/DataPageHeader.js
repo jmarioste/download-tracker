@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { startSetSelectedRepo } from '../actions/selectRepo';
 import { MenuItem, Dropdown } from 'react-bootstrap';
 import { startGetReleaseData } from '../actions/graphData';
+import summarySelector from '../selectors/summary';
+import graphDataSelector from '../selectors/graphData';
 
 export class DataPageHeader extends React.Component {
   onSelect = (repo) => {
@@ -32,9 +34,19 @@ export class DataPageHeader extends React.Component {
           </Dropdown.Menu>
         </Dropdown>
 
-        <span className="page-header__subtitle">
-          Summary
-      </span>
+        {
+          this.props.downloadCountIncrease > 0 ?
+            (
+              <span className="page-header__subtitle">
+                Download count has been increased by {this.props.downloadCountIncrease} during this period.
+            </span>
+            ) : (
+              <span className="page-header__subtitle">
+                Summary: No data to summarize
+              </span>
+            )
+        }
+
         <button
           className="button button--circle button__add-repo"
           onClick={showModal}
@@ -60,8 +72,10 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const mapStateToProps = (state) => {
   const isSelectedInTracked = state.trackedRepos.indexOf(state.selectedRepo) > -1;
+  const graphData = graphDataSelector(state.graphData, state.selectedRepo, state.filters);
   return {
-    selectedRepo: isSelectedInTracked ? state.selectedRepo : undefined
+    selectedRepo: isSelectedInTracked ? state.selectedRepo : undefined,
+    downloadCountIncrease: summarySelector(graphData)
   }
 };
 

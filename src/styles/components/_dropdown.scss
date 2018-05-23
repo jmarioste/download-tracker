@@ -34,7 +34,7 @@
 .dropdown--repo,
 .dropdown--repo.open {
   .dropdown-toggle.btn-default {
-    color: #212121;
+    color: $dark-grey;
     padding-left: 0;
     .caret {
       margin-left: 1rem;
@@ -45,7 +45,7 @@
     &:hover,
     &:focus,
     &:active {
-      color: #212121;
+      color: $dark-grey;
     }
   }
   .dropdown-menu {
