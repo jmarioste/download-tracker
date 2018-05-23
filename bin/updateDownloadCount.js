@@ -5,7 +5,7 @@ const _ = require('lodash');
 const axios = require('axios');
 const moment = require('moment');
 //static port not gonna work in heroku. it provides an environment variable. use process.env.PORT variable
-require('dotenv').config({ path: '.env.development' });
+// require('dotenv').config({ path: '.env.development' });
 
 const date = moment().format("MM-DD-YYYY");
 // const config = {
