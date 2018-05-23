@@ -34,7 +34,7 @@ class Filters extends Component {
           <i className="fa fa-tag fa-lg"></i>
           <Dropdown className="dropdown--tag-selector" id="release-version-dropdown" onSelect={this.onSelect}>
             <Dropdown.Toggle>
-              <span>{filters.version || 'Select a version'} </span>
+              <span>{filters.version.replace(/\-/g, '.') || 'Select a version'} </span>
             </Dropdown.Toggle>
             <Dropdown.Menu>
               {
