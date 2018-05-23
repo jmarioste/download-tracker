@@ -19,7 +19,7 @@ const date = moment().format("MM-DD-YYYY");
 
 
 firebase.initializeApp({
-  credential: admin.credential.cert({
+  credential: firebase.credential.cert({
     "type": "service_account",
     "project_id": "github-download-tracker",
     "private_key_id": process.env.PRIVATE_KEY_ID,
