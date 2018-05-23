@@ -29,10 +29,10 @@ class Filters extends Component {
   render() {
     const { filters } = this.props;
     return (
-      <div>
+      <div className="filters">
         <div className="tag-selector">
           <i className="fa fa-tag fa-lg"></i>
-          <Dropdown className="" id="release-version-dropdown" onSelect={this.onSelect}>
+          <Dropdown className="dropdown--tag-selector" id="release-version-dropdown" onSelect={this.onSelect}>
             <Dropdown.Toggle>
               <span>{filters.version || 'Select a version'} </span>
             </Dropdown.Toggle>
@@ -59,7 +59,6 @@ class Filters extends Component {
             showClearDates={true}
           />
         </div>
-        <div>Period type</div>
       </div>
     )
   }

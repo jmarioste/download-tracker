@@ -1,0 +1,12 @@
+.filters {
+  display: flex;
+  align-items: center;
+  >*{
+    margin-right:$s-size;
+    padding: $s-size 0;
+  }
+  .dropdown--tag-selector > .dropdown-toggle {
+    font-size: 2.5rem;
+    border-radius: 2px;
+  }
+}

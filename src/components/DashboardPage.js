@@ -4,6 +4,7 @@ import DataPageHeader from './DataPageHeader';
 import AddRepoModal from "./AddRepoModal";
 import LineGraph from './LineGraph';
 import Filters from './Filters';
+import versionsSelector from '../selectors/versionsSelector';
 
 
 const NoDataPageHeader = (props) => {
@@ -57,10 +58,23 @@ export class DashboardPage extends Component {
             <NoDataPageHeader showModal={this.toggle} />
           }
         </div>
-        <div className="content-container">
-          <Filters />
-          <LineGraph />
-        </div>
+        {
+          this.props.hasVersions && (
+            <div className="content-container">
+              <Filters />
+              <LineGraph />
+            </div>
+          )
+        }
+        {
+          !this.props.hasVersions && (
+            <div className="content-container no-data-message">
+              <h2>
+                <i className="fa fa-info-circle fa-lg"></i>
+                I have no data to crunch from this repo... ;( </h2>
+            </div>
+          )
+        }
         <AddRepoModal show={this.state.show} toggle={this.toggle} />
       </div>
 
@@ -75,7 +89,8 @@ const mapStateToProps = (state) => {
   return {
     user: state.auth,
     trackedRepos: state.trackedRepos,
-    selectedRepo: state.selectedRepo
+    selectedRepo: state.selectedRepo,
+    hasVersions: versionsSelector(state.graphData, state.selectedRepo).length > 0,
   }
 }
 

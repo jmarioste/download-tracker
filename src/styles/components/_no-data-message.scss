@@ -1,0 +1,9 @@
+.no-data-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #757575;
+  .fa-info-circle {
+    margin-right: 1rem;
+  }
+}
