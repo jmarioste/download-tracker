@@ -39,7 +39,7 @@ class Filters extends Component {
             <Dropdown.Menu>
               {
                 this.props.versions.map((version) => {
-                  return (<MenuItem eventKey={version} key={version}>{version}</MenuItem>)
+                  return (<MenuItem eventKey={version} key={version}>{version.replace(/\-/g, '.')}</MenuItem>)
                 })
               }
             </Dropdown.Menu>
