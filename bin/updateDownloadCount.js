@@ -19,7 +19,7 @@ const date = moment().format("MM-DD-YYYY");
 
 
 firebase.initializeApp({
-  credential: {
+  credential: admin.credential.cert({
     "type": "service_account",
     "project_id": "github-download-tracker",
     "private_key_id": process.env.PRIVATE_KEY_ID,
@@ -30,8 +30,11 @@ firebase.initializeApp({
     "token_uri": "https://accounts.google.com/o/oauth2/token",
     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
     "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-dzqec%40github-download-tracker.iam.gserviceaccount.com"
-  },
-  databaseURL: "https://github-download-tracker.firebaseio.com"
+  }),
+  databaseURL: "https://github-download-tracker.firebaseio.com",
+  databaseAuthVariableOverride: {
+    uid: "my-service-worker"
+  }
 });
 
 const database = firebase.database();
