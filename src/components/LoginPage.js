@@ -29,7 +29,7 @@ export class LoginPage extends Component {
         <div className="content-container">
           <Row>
             <Col xs={12} md={6}>
-              <img src="http://via.placeholder.com/600x400" className="login-screenshot" alt="" />
+              <img src="/images/dashboard-image.png" className="login-screenshot" alt="" />
             </Col>
             <Col xs={12} md={6}>
               <h2>Easily track download count of a release versions per day</h2>

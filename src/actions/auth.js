@@ -2,7 +2,13 @@ import database, { firebase, googleAuthProvider, githubAuthProvider } from "../f
 import AuthProvider from './provider.enum';
 export const login = (userData) => ({
   type: 'LOGIN',
-  userData
+  userData: {
+    accessToken: userData.accessToken,
+    displayName: userData.displayName,
+    photoURL: userData.photoURL,
+    username: userData.username,
+    uid: userData.uid
+  }
 })
 
 export const logout = () => ({

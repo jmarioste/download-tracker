@@ -1,4 +1,4 @@
-// import dummyData from './dummyData';
+import dummyData from './dummyData';
 import database from '../firebase/firebase'
 export const setGraphData = (data) => {
   return {
@@ -13,6 +13,6 @@ export const startGetReleaseData = (repo) => {
     const uid = state.auth.uid;
     return database.ref(`/users/${uid}/repos`).once('value').then((data) => {
       dispatch(setGraphData(data.val()));
-    })
+    });
   }
 }
