@@ -14,7 +14,7 @@ export const PublicHeader = (props) => (
         <button className="button button--login" onClick={props.startLogin}>
           <i className="fab fa-lg fa-github">
           </i>
-          Sign in with Github
+          <span className="hidden-xs">Sign in with Github</span>
         </button>
       </div>
     </div>

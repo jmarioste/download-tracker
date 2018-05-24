@@ -9,10 +9,22 @@ export class LineGraph extends Component {
       position: 'right'
     }
   }
+  optionsMobile = {
+    legend: {
+      position: 'bottom'
+    },
+    maintainAspectRatio: false
+  }
   render() {
     return (
       <div>
-        <Line data={this.props.graphData} options={this.options} />
+        <div className="hidden-xs">
+          <Line className="hidden-sm" data={this.props.graphData} options={this.options} />
+        </div>
+        <div className="visible-xs">
+          <Line className="visible-sm" data={this.props.graphData} options={this.optionsMobile} height={500} />
+        </div>
+
       </div>
     )
   }

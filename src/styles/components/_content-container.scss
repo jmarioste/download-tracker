@@ -1,10 +1,14 @@
 .content-container {
   margin: 0 auto;
-  max-width: 70%;
+  max-width: 100%;
   padding: 0 $m-size;
   position: relative;
+  @media (min-width:$desktop-breakpoint) {
+    max-width: 70%;
+  }
 }
 
 .content-container--centered {
   text-align:center;
 }
+

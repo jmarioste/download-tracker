@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { startLogin } from "../actions/auth";
 import AuthProvider from "../actions/provider.enum";
-
+import { Row, Col } from "react-bootstrap";
 export class LoginPage extends Component {
 
   loginWithGithub = () => {
@@ -27,19 +27,19 @@ export class LoginPage extends Component {
         </div>
 
         <div className="content-container">
-          <div className="feature-box">
-            <div className="feature-box__left-content">
-              <img src="http://via.placeholder.com/600x400" alt="" />
-            </div>
-            <div className="feature-box__right-content">
+          <Row>
+            <Col xs={12} md={6}>
+              <img src="http://via.placeholder.com/600x400" className="login-screenshot" alt="" />
+            </Col>
+            <Col xs={12} md={6}>
               <h2>Easily track download count of a release versions per day</h2>
 
               <p>
                 Github doesn't have a UI to track download counts for releases, so if you want to track your download counts per day,
                 this app solves the problem easily by providing you with graphs and helpful information for your repositories.
               </p>
-            </div>
-          </div>
+            </Col>
+          </Row>
         </div>
       </div>
     )
