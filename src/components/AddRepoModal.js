@@ -32,7 +32,7 @@ export class AddRepoModal extends Component {
     })
   }
 
-  onCheckRepo = (e) => {
+  onCheckRepo = (e, suppliedValue) => {
     const value = e.target.value;
     const checked = e.target.checked;
     if (checked) {
@@ -60,26 +60,32 @@ export class AddRepoModal extends Component {
             </div>
             <div >
               <span className="modal-header__subtitle">
-                Add a repo to add download count tracking.
+                Check the repos you want to track.
               </span>
             </div>
           </Modal.Header>
-          <Modal.Body>
-            {
-              allRepos.map((repo, index) => {
-                return <div key={index + repo}>
-                  <input type="checkbox"
-                    checked={this.state.trackedRepos.indexOf(repo) > -1}
-                    onChange={this.onCheckRepo} value={repo}
-                  />
-                  {repo}
-                </div>
-              })
-            }
+          <Modal.Body className="modal-body__repo_selector">
+            <ul className="list-group">
+              {
+                allRepos.map((repo, index) => {
+                  return <li key={index + repo} className="list-group-item">
+                    <div className="label-check">
+                      <div className="checkbox">
+                        <input type="checkbox" id={index + repo}
+                          checked={this.state.trackedRepos.indexOf(repo) > -1}
+                          onChange={this.onCheckRepo} value={repo}
+                        />
+                        <label htmlFor={index + repo}>{repo}</label>
+                      </div>
+                    </div>
+                  </li>
+                })
+              }
+            </ul>
           </Modal.Body>
           <Modal.Footer>
-            <Button color="primary" onClick={this.onSave}>Save</Button>{' '}
-            <Button color="primary" onClick={toggle}>Close</Button>{' '}
+            <Button bsStyle="success" onClick={this.onSave}>Save</Button>{' '}
+            <Button onClick={toggle}>Close</Button>{' '}
           </Modal.Footer>
         </Modal>
       </div>
