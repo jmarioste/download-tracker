@@ -28,7 +28,7 @@ export const startLogin = (authProvider) => {
       console.log(JSON.stringify(response, null, 4));
       const { user, credential, additionalUserInfo } = response;
       // console.log(response)
-      database.ref(`/users/${user.uid}`).set({
+      database.ref(`/users/${user.uid}`).update({
         displayName: user.displayName,
         photoURL: user.providerData[0].photoURL,
         accessToken: credential.accessToken,
