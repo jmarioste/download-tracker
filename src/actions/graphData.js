@@ -1,4 +1,4 @@
-import dummyData from './dummyData';
+// import dummyData from './dummyData';
 import database from '../firebase/firebase'
 export const setGraphData = (data) => {
   return {
