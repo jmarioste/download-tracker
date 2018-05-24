@@ -7,7 +7,7 @@ import DashboardPage from '../components/DashboardPage';
 import LoginPage from '../components/LoginPage';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from "./PublicRoute";
-
+import Footer from "../components/Footer";
 export const history = createHistory();
 
 const AppRouter = () => (
@@ -20,6 +20,8 @@ const AppRouter = () => (
         <PrivateRoute path='/dashboard' component={DashboardPage} />
         <Route component={NotFoundPage} />
       </Switch>
+
+      <Footer></Footer>
     </div>
 
   </Router>

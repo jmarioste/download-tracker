@@ -26,7 +26,7 @@ export class LoginPage extends Component {
           </div>
         </div>
 
-        <div className="content-container">
+        <div className="content-container login-content">
           <Row>
             <Col xs={12} md={6}>
               <img src="/images/dashboard-image.png" className="login-screenshot" alt="" />
