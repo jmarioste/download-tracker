@@ -5,11 +5,15 @@ import { MenuItem, Dropdown } from 'react-bootstrap';
 import { startGetReleaseData } from '../actions/graphData';
 import summarySelector from '../selectors/summary';
 import graphDataSelector from '../selectors/graphData';
+import { setVersion } from '../actions/filters';
 
 export class DataPageHeader extends React.Component {
   onSelect = (repo) => {
+    this.props.setVersion('');
     this.props.startSetSelectedRepo(repo)
-      .then(() => this.props.startGetReleaseData());
+      .then(() => {
+        this.props.startGetReleaseData()
+      });
   }
 
   render() {
@@ -66,6 +70,9 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     startGetReleaseData: (repo) => {
       return dispatch(startGetReleaseData(repo));
+    },
+    setVersion: (version) => {
+      dispatch(setVersion(version));
     }
   }
 };
