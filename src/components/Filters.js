@@ -9,6 +9,8 @@ class Filters extends Component {
   state = {
     focusedInput: null
   }
+
+
   onSelect = (value) => {
     this.props.setVersion(value);
   }
@@ -25,6 +27,12 @@ class Filters extends Component {
       }
     });
   }
+
+  componentWillMount() {
+    const selectedVersion = this.props.filters.version || this.props.versions[0] || '';
+    this.props.setVersion(selectedVersion);
+  }
+
 
   render() {
     const { filters } = this.props;
