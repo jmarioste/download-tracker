@@ -33,19 +33,25 @@ const graphDataSelector = (data, repoName, filters) => {
 
     const dataSet = {
       label: artifactName.replace(/u002E/g, '.'),
-      backgroundColor: `rgba(${red},${blue},${green}, .2)`,
+      backgroundColor: `rgba(${red},${blue},${green}, 0)`,
       borderColor: `rgba(${red},${blue},${green}, 1)`,
       pointRadius: 2,
       pointHitRadius: 5,
       // data: _.map(value, (count, date) => count),
       data: []
     }
-    graphData.datasets.push(dataSet)
+
 
     graphData.labels.forEach((date) => {
       var count = value[date] || null;
-      dataSet.data.push(count);
+      if (count) {
+        dataSet.data.push(count);
+      }
     })
+
+    if (dataSet.data.length > 0) {
+      graphData.datasets.push(dataSet)
+    }
   });
 
   console.log(graphData);
