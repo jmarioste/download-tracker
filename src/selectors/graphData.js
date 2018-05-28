@@ -1,4 +1,4 @@
-import { toArray, each, random } from 'lodash';
+import { toArray, each, random, without } from 'lodash';
 import moment from "moment";
 
 const createLabelsFromDates = (startDate, endDate) => {
@@ -44,12 +44,11 @@ const graphDataSelector = (data, repoName, filters) => {
 
     graphData.labels.forEach((date) => {
       var count = value[date] || null;
-      if (count) {
-        dataSet.data.push(count);
-      }
+      dataSet.data.push(count);
     })
 
-    if (dataSet.data.length > 0) {
+    const hasValues = without(dataSet.data, null).length > 0;
+    if (hasValues) {
       graphData.datasets.push(dataSet)
     }
   });

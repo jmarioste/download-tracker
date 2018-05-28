@@ -18,11 +18,11 @@ export class LineGraph extends Component {
   render() {
     return (
       <div>
-        <div className="hidden-xs">
-          <Line className="hidden-sm" data={this.props.graphData} options={this.options} />
+        <div className="hidden-xs hidden-sm">
+          <Line data={this.props.graphData} options={this.options} />
         </div>
-        <div className="visible-xs-*">
-          <Line className="visible-sm" data={this.props.graphData} options={this.optionsMobile} height={500} />
+        <div class="hidden-md hidden-lg" >
+          <Line data={this.props.graphData} options={this.optionsMobile} height={500} />
         </div>
 
       </div>
