@@ -44,10 +44,10 @@ export class DataPageHeader extends React.Component {
             (
               <div>
                 <span className="page-header__subtitle">
-                  Download count has been increased by <strong>{this.props.downloadCountIncrease}</strong> during this period and
+                  Download count has been increased by <strong>{this.props.downloadCountIncrease}</strong> during this period.
                 </span>
                 <span className="page-header__subtitle">
-                  the total download count is <strong>{this.props.totalDownloadCount} </strong>.
+                  The total download count is <strong>{this.props.totalDownloadCount}</strong>.
                 </span>
               </div>
             ) : (
