@@ -16,6 +16,9 @@
   margin: 1rem 0 $l-size 0;
   font-weight: 300;
   color: #757575;
-
+  strong{
+    font-weight: 700;
+    color: $accent;
+  }
 }
 

@@ -6,6 +6,7 @@ import { startGetReleaseData } from '../actions/graphData';
 import summarySelector from '../selectors/summary';
 import graphDataSelector from '../selectors/graphData';
 import { setVersion } from '../actions/filters';
+import totalDownloads from '../selectors/totalDownloads';
 
 export class DataPageHeader extends React.Component {
   onSelect = (repo) => {
@@ -41,9 +42,14 @@ export class DataPageHeader extends React.Component {
         {
           this.props.downloadCountIncrease > 0 ?
             (
-              <span className="page-header__subtitle">
-                Download count has been increased by {this.props.downloadCountIncrease} during this period.
-            </span>
+              <div>
+                <span className="page-header__subtitle">
+                  Download count has been increased by <strong>{this.props.downloadCountIncrease}</strong> during this period and
+                </span>
+                <span className="page-header__subtitle">
+                  the total download count is <strong>{this.props.totalDownloadCount} </strong>.
+                </span>
+              </div>
             ) : (
               <span className="page-header__subtitle">
                 Summary: No data to summarize
@@ -82,7 +88,8 @@ const mapStateToProps = (state) => {
   const graphData = graphDataSelector(state.graphData, state.selectedRepo, state.filters);
   return {
     selectedRepo: isSelectedInTracked ? state.selectedRepo : undefined,
-    downloadCountIncrease: summarySelector(graphData)
+    downloadCountIncrease: summarySelector(graphData),
+    totalDownloadCount: totalDownloads(graphData)
   }
 };
 

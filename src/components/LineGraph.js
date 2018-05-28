@@ -7,13 +7,17 @@ export class LineGraph extends Component {
   options = {
     legend: {
       position: 'right'
-    }
+    },
+    lineTension: 0,
+    borderJoinStyle: 'bevel'
   }
   optionsMobile = {
     legend: {
       position: 'bottom'
     },
-    maintainAspectRatio: false
+    maintainAspectRatio: false,
+    lineTension: 0,
+    borderJoinStyle: 'bevel'
   }
   render() {
     return (

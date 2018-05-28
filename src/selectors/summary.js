@@ -1,16 +1,21 @@
+import { without } from "lodash";
 const summarySelector = ({ datasets = [] }) => {
 
-  let increaseCount = 0;
-  datasets.forEach(({ data }) => {
-    // const data = dataset.data;
-    const min = Math.min(...data);
-    const max = Math.max(...data);
-    console.log('stuff', min, max, data);
-    const increase = max - min;
-    increaseCount += increase;
-  });
-  console.log("summarySelector", increaseCount);
-  return increaseCount;
+  const min = datasets.map(({ data }) => {
+    data = without(data, null);
+    return data.length ? Math.min(...data) : 0;
+  }).reduce((a, b) => {
+    return a + b;
+  }, 0);
+
+  const max = datasets.map(({ data }) => {
+    data = without(data, null);
+    return data.length ? Math.max(...data) : 0;
+  }).reduce((a, b) => {
+    return a + b;
+  }, 0);
+
+  return max - min;
 }
 
 export default summarySelector;
