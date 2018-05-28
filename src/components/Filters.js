@@ -4,7 +4,7 @@ import { MenuItem, Dropdown } from 'react-bootstrap';
 import { DateRangePicker } from 'react-dates';
 import versionsSelector from "../selectors/versionsSelector";
 import { setVersion, setStartDate, setEndDate } from "../actions/filters";
-
+import startDateSelector from "../selectors/startDate";
 class Filters extends Component {
   state = {
     focusedInput: null
@@ -31,6 +31,7 @@ class Filters extends Component {
   componentWillMount() {
     const selectedVersion = this.props.filters.version || this.props.versions[0] || '';
     this.props.setVersion(selectedVersion);
+    this.props.setStartDate(this.props.startDate);
   }
 
 
@@ -73,9 +74,11 @@ class Filters extends Component {
 }
 
 const mapStateToProps = (state) => {
+  const startDate = startDateSelector(state.graphData, state.selectedRepo, state.filters)
   return {
     versions: versionsSelector(state.graphData, state.selectedRepo),
-    filters: state.filters
+    filters: state.filters,
+    startDate: startDate
   }
 }
 

@@ -40,7 +40,7 @@ export class DataPageHeader extends React.Component {
         </Dropdown>
 
         {
-          this.props.downloadCountIncrease > 0 ?
+          (this.props.downloadCountIncrease > 0 || this.props.totalDownloadCount) ?
             (
               <div>
                 <span className="page-header__subtitle">

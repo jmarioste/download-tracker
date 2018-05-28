@@ -3,7 +3,7 @@ import moment from 'moment';
 const defaultFilterState = {
   version: '',
   startDate: moment().startOf('month'),
-  endDate: moment().endOf('month'),
+  endDate: moment(),
   period: 'month'
 }
 
