@@ -21,7 +21,7 @@ export class LineGraph extends Component {
         <div className="hidden-xs">
           <Line className="hidden-sm" data={this.props.graphData} options={this.options} />
         </div>
-        <div className="visible-xs">
+        <div className="visible-xs-*">
           <Line className="visible-sm" data={this.props.graphData} options={this.optionsMobile} height={500} />
         </div>
 
